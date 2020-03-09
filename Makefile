@@ -65,11 +65,8 @@ NAME	=	tetris
 COMP	=	src/main.c	\
 			src/read_file.c	\
 			src/garbage/garbage_collector.c	\
-<<<<<<< HEAD
-			src/display.c
-=======
+			src/display.c	\
 			src/good_print.c
->>>>>>> Max
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude -g3
 

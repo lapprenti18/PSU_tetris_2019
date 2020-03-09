@@ -62,6 +62,7 @@ void display_blocks(store_t *store)
         my_printf("Tetriminos: ");
         update_tab_and_display(store);
     } while (!check_finish(store->tetriminos));
+    my_printf("Press any key to start Tetris\n");
 }
 
 int check_finish(char **map)

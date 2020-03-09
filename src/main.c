@@ -47,7 +47,6 @@ int ascii_order(store_t *store)
 void update_tab_and_display(store_t *store)
 {
     int winner = 0;
-    int temp = 0;
 
     winner = ascii_order(store);
     my_printf("Name ");
@@ -114,19 +113,17 @@ int main(int ac, char *av[])
         {"key-pause=", required_argument, 0, 'f'},
         {"without-next", no_argument, 0, 'g'},
         {"debug", no_argument, 0, 'h'},
-        {0, 0, 0, 0}
-    };
-
+        {0, 0, 0, 0}};
     set_up_key(key);
     while ((opt = getopt_long(ac, av, flag, long_options, NULL)) != -1)
         test_key(key, opt);
-    key->debug == true ? display_key(key) : 0;
     if (!fd)
         return (84);
     reading_folder(fd, &store);
     closedir(fd);
     if (!store.tetriminos)
         return (84);
-    display_blocks(&store);
+    key->debug == true ? display_key(key) : 0;
+    key->debug == true ? display_blocks(&store) : 0;
     return (0);
 }

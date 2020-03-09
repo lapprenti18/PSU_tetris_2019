@@ -10,6 +10,7 @@
 
 void display_key(keyt_t *key)
 {
+    my_printf("*** DEBUG MODE ***\n");
     my_printf("Key Left : %s\n", key->key_left);
     my_printf("Key Right : %s\n", key->key_right);
     my_printf("Key Turn : %s\n", key->key_turn);
@@ -17,7 +18,7 @@ void display_key(keyt_t *key)
     my_printf("Key Quit : %s\n", key->key_quit);
     my_printf("Key Pause : %s\n", key->key_pause);
     my_printf("Next : ");
-    key->next == 1 ? my_printf("Yes\n") : my_printf("No\n");
+    key->next == 0 ? my_printf("Yes\n") : my_printf("No\n");
     my_printf("Level : %d\n", key->lvl);
     my_printf("Size : %s\n", key->size);
 
