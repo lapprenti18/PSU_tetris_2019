@@ -25,7 +25,7 @@ void good_print(char **tab)
             return;
         }
     }
-    if (check_len <= 1) {
+    if (check_len <= 2) {
         my_printf("Error\n");
         return;
     }

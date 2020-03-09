@@ -71,6 +71,8 @@ int main(int ac, char *av[])
         return (84);
     reading_folder(fd, &store);
     closedir(fd);
+    if (!store.tetriminos)
+        return (84);
     display_blocks(&store);
     return (0);
 }
