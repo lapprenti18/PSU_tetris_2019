@@ -83,7 +83,7 @@ void test_key(keyt_t *key, char opt)
 {
     (opt == 'L') ? key->lvl = my_getnbr(optarg) : 0;
     (opt == 'l') ? my_strlen(optarg) == 1 ? key->key_left = optarg : 0 : 0;
-    (opt == 'r') ? my_strlen(optarg) == 1 ? key->key_right = optarg : 0 : 0; 
+    (opt == 'r') ? my_strlen(optarg) == 1 ? key->key_right = optarg : 0 : 0;
     (opt == 't') ? my_strlen(optarg) == 1 ? key->key_turn = optarg: 0 : 0;
     (opt == 'd') ? my_strlen(optarg) == 1 ? key->key_drop = optarg : 0 : 0;
     (opt == 'q') ? my_strlen(optarg) == 1 ? key->key_quit = optarg : 0 : 0;
