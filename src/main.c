@@ -6,6 +6,7 @@
 */
 
 #include "../include/my.h"
+#include "../include/garbage_collector.h"
 
 int ascii_order(store_t *store)
 {
@@ -67,13 +68,28 @@ void update_tab_and_display(store_t *store)
     store->tetriminos[winner][0] = '~';
 }
 
+char *str_copy(char *enter)
+{
+    char *temp = my_malloc(my_strlen(enter) + 1);
+    temp[my_strlen(enter)] = '\0';
+
+    for (int a = 0; a < my_strlen(enter) + 1; a += 1) {
+        temp[a] = enter[a];
+    }
+    return (temp);
+}
+
 int main(int ac, char *av[])
 {
     (void)ac;
     (void)av;
     DIR *fd = opendir("tetriminos");
     store_t store;
+    keyt_t *key;
+    key = malloc(sizeof(keyt_t));
 
+    set_up_key(key);
+    display_key(key);
     if (!fd)
         return (84);
     reading_folder(fd, &store);

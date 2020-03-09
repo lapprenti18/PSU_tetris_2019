@@ -18,6 +18,7 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <pwd.h>
+#include <stdbool.h>
 #include <grp.h>
 #include <time.h>
 #include <errno.h>
@@ -36,6 +37,19 @@ typedef struct store_s
     char **tetriminos;
     int nb_tetriminos;
 }store_t;
+
+typedef struct keyt_s
+{
+    char *key_left;
+    char *key_right;
+    char *key_turn;
+    char *key_drop;
+    char *key_quit;
+    char *key_pause;
+    bool next;
+    int lvl;
+    char *size;
+}keyt_t;
 
 void update_tab_and_display(store_t *store);
 void display_blocks(store_t *store);
@@ -122,5 +136,7 @@ void my_print_b(va_list ap);
 void my_print_u(va_list ap);
 void my_print_upcase_s(va_list ap);
 void my_printf(char *format, ...);
+void display_key(keyt_t *key);
+void set_up_key(keyt_t *key);
 
 #endif /* MY_H_ */
