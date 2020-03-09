@@ -63,6 +63,7 @@ SRC	=	lib/my/my_putnbr_base.c	\
 NAME	=	tetris
 
 COMP	=	src/main.c	\
+			src/read_file.c
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude
 
