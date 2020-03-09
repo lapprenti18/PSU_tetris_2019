@@ -8,6 +8,19 @@
 #include "../include/my.h"
 #include "../include/garbage_collector.h"
 
+int ascii_order(store_t *store)
+{
+    int winner = 0;
+    int save = 0;
+
+    while (store->tetriminos[winner]) {
+        if (store->tetriminos[winner][0] != '~')
+            save = check_order(store->tetriminos, save, winner);
+        winner += 1;
+    }
+    return (save);
+}
+
 int my_special_len(char *str)
 {
     int len = 0;

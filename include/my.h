@@ -54,6 +54,8 @@ typedef struct keyt_s
     char *size;
 }keyt_t;
 
+int set_up_key(keyt_t *key, int ac, char *av[]);
+int ascii_order(store_t *store);
 void final_print(char **tab, char **first_line, int check_same);
 int read_and_print(char *str);
 void update_tab_and_display(store_t *store);
@@ -142,7 +144,6 @@ void my_print_u(va_list ap);
 void my_print_upcase_s(va_list ap);
 void my_printf(char *format, ...);
 void display_key(keyt_t *key);
-void set_up_key(keyt_t *key);
 char *str_copy(char *enter);
 
 #endif /* MY_H_ */

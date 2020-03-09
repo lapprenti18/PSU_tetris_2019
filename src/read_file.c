@@ -89,4 +89,5 @@ void reading_folder(DIR *fd, store_t *store)
     }
     store->nb_tetriminos = nb_tetris;
     store->tetriminos = my_str_to_word_array(files, "\n");
+    closedir(fd);
 }

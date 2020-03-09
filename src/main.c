@@ -31,19 +31,6 @@ int check_order(char **tab, int save, int winner)
     return (temp);
 }
 
-int ascii_order(store_t *store)
-{
-    int winner = 0;
-    int save = 0;
-
-    while (store->tetriminos[winner]) {
-        if (store->tetriminos[winner][0] != '~')
-            save = check_order(store->tetriminos, save, winner);
-        winner += 1;
-    }
-    return (save);
-}
-
 void update_tab_and_display(store_t *store)
 {
     int winner = 0;
@@ -114,13 +101,14 @@ int main(int ac, char *av[])
         {"without-next", no_argument, 0, 'g'},
         {"debug", no_argument, 0, 'h'},
         {0, 0, 0, 0}};
-    set_up_key(key);
+
+    if (set_up_key(key, ac, av) == 1)
+        return (0);
     while ((opt = getopt_long(ac, av, flag, long_options, NULL)) != -1)
         test_key(key, opt);
     if (!fd)
         return (84);
     reading_folder(fd, &store);
-    closedir(fd);
     if (!store.tetriminos)
         return (84);
     key->debug == true ? display_key(key) : 0;
