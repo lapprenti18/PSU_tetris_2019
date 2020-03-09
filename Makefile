@@ -64,9 +64,10 @@ NAME	=	tetris
 
 COMP	=	src/main.c	\
 			src/read_file.c	\
-			src/garbage/garbage_collector.c
+			src/garbage/garbage_collector.c	\
+			src/good_print.c
 
-CFLAGS  =	-W -Wall -Wextra -Iinclude
+CFLAGS  =	-W -Wall -Wextra -Iinclude -g3
 
 OBJ	=	$(SRC:.c=.o)
 

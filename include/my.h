@@ -37,6 +37,8 @@ typedef struct store_s
     int nb_tetriminos;
 }store_t;
 
+void final_print(char **tab, char **first_line, int check_same);
+int read_and_print(char *str);
 void update_tab_and_display(store_t *store);
 void display_blocks(store_t *store);
 int check_finish(char **map);
