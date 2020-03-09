@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "../../include/garbage_collector.h"
 
 int is_alphanum(char c, char *operator)
 {
@@ -69,7 +70,7 @@ char **my_get_word(char const *str, char **tab, char *operator)
             letter += 1;
             num += 1;
         }
-        tab[cursor] = malloc(sizeof(char) * (num + 1));
+        tab[cursor] = my_malloc(sizeof(char) * (num + 1));
         cursor += 1;
         while ((!(is_alphanum(str[letter], operator))) && str[letter])
             letter += 1;
@@ -85,7 +86,7 @@ char **my_str_to_word_array(char *str, char *operator)
     if (!str)
         return (NULL);
     a = my_nb_word(str, operator);
-    tab = malloc(sizeof(char *) * (a + 1));
+    tab = my_malloc(sizeof(char *) * (a + 1));
     tab[a] = NULL;
     my_get_word(str, tab, operator);
     return (tab);

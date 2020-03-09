@@ -31,6 +31,16 @@ typedef struct format_t
     void (*ptr)(va_list);
 } format_t;
 
+typedef struct store_s
+{
+    char **tetriminos;
+    int nb_tetriminos;
+}store_t;
+
+void update_tab_and_display(store_t *store);
+void display_blocks(store_t *store);
+int check_finish(char **map);
+void reading_folder(DIR *fd, store_t *store);
 void my_memset(char *buffer, char c, int number);
 int    my_putnbr_base(int nbr, char const *base);
 int    my_compute_power_rec(int nb, int p);
@@ -50,7 +60,7 @@ int    my_showstr(char const *str);
 int    my_show_word_array(char * const *tab);
 void    my_sort_int_array(int *tab, int size);
 char    *my_strcapitalize(char *str);
-char    *my_strcat(char *dest, char *src, int check);
+char     *my_strcat(char *src, char *dest);
 char    my_strcmp(char *s1, char *s2);
 char    *my_strcpy(char *dest, char const *src);
 char    *my_strcpy2(char *dest, char const *src);

@@ -63,7 +63,8 @@ SRC	=	lib/my/my_putnbr_base.c	\
 NAME	=	tetris
 
 COMP	=	src/main.c	\
-			src/read_file.c
+			src/read_file.c	\
+			src/garbage/garbage_collector.c
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude
 
