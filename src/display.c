@@ -14,9 +14,10 @@ void display_key(keyt_t *key)
     my_printf("Key Right : %s\n", key->key_right);
     my_printf("Key Turn : %s\n", key->key_turn);
     my_printf("Key Drop : %s\n", key->key_drop);
+    my_printf("Key Quit : %s\n", key->key_quit);
     my_printf("Key Pause : %s\n", key->key_pause);
     my_printf("Next : ");
-    key->next != true ? my_printf("Yes\n") : my_printf("No\n");
+    key->next == 1 ? my_printf("Yes\n") : my_printf("No\n");
     my_printf("Level : %d\n", key->lvl);
     my_printf("Size : %s\n", key->size);
 
@@ -31,6 +32,7 @@ void set_up_key(keyt_t *key)
     key->key_quit = str_copy("q");
     key->key_pause = str_copy("(space)");
     key->next = false;
+    key->debug = false;
     key->lvl = 1;
     key->size = str_copy("20*10");
 }

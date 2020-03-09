@@ -64,7 +64,8 @@ NAME	=	tetris
 
 COMP	=	src/main.c	\
 			src/read_file.c	\
-			src/garbage/garbage_collector.c
+			src/garbage/garbage_collector.c	\
+			src/display.c
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude
 

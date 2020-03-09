@@ -9,6 +9,7 @@
 #define MY_H_
 
 #include <stdarg.h>
+#include <getopt.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -47,7 +48,9 @@ typedef struct keyt_s
     char *key_quit;
     char *key_pause;
     bool next;
+    bool debug;
     int lvl;
+    int help;
     char *size;
 }keyt_t;
 
@@ -138,5 +141,6 @@ void my_print_upcase_s(va_list ap);
 void my_printf(char *format, ...);
 void display_key(keyt_t *key);
 void set_up_key(keyt_t *key);
+char *str_copy(char *enter);
 
 #endif /* MY_H_ */
