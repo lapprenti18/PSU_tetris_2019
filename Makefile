@@ -66,7 +66,8 @@ COMP	=	src/main.c	\
 			src/read_file.c	\
 			src/garbage/garbage_collector.c	\
 			src/display.c	\
-			src/good_print.c
+			src/good_print.c	\
+			src/test_key.c
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude -g3
 

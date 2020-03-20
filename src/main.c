@@ -58,29 +58,6 @@ char *str_copy(char *enter)
     return (temp);
 }
 
-void test_key(keyt_t *key, char opt)
-{
-    (opt == 'L') ? key->lvl = my_getnbr(optarg) : 0;
-    (opt == 'l') ? my_strlen(optarg) == 1 ? key->key_left = optarg : 0 : 0;
-    (opt == 'r') ? my_strlen(optarg) == 1 ? key->key_right = optarg : 0 : 0;
-    (opt == 't') ? my_strlen(optarg) == 1 ? key->key_turn = optarg: 0 : 0;
-    (opt == 'd') ? my_strlen(optarg) == 1 ? key->key_drop = optarg : 0 : 0;
-    (opt == 'q') ? my_strlen(optarg) == 1 ? key->key_quit = optarg : 0 : 0;
-    (opt == 'p') ? my_strlen(optarg) == 1 ? key->key_pause = optarg : 0 : 0;
-    (opt == 'w') ? key->next = true : 0;
-    (opt == 'D') ? key->debug = true : 0;
-    (opt == 'z') ? my_strlen(optarg) == 1 ? key->help = 1 : 0 : 0;
-    (opt == 'a') ? my_strlen(optarg) == 1 ? key->key_left = optarg : 0 : 0;
-    (opt == 'b') ? my_strlen(optarg) == 1 ? key->key_right = optarg : 0 : 0;
-    (opt == 'c') ? my_strlen(optarg) == 1 ? key->key_turn = optarg : 0 : 0;
-    (opt == 'k') ? my_strlen(optarg) == 1 ? key->key_drop = optarg : 0 : 0;
-    (opt == 'e') ? my_strlen(optarg) == 1 ? key->key_quit = optarg : 0 : 0;
-    (opt == 'f') ? my_strlen(optarg) == 1 ? key->key_pause = optarg : 0 : 0;
-    (opt == 'g') ? key->next = true : 0;
-    (opt == 'h') ? key->debug = true : 0;
-    (opt == 'm') ? key->lvl = my_getnbr(optarg) : 0;
-}
-
 int main(int ac, char *av[])
 {
     DIR *fd = opendir("tetriminos");
@@ -101,11 +78,12 @@ int main(int ac, char *av[])
         {"without-next", no_argument, 0, 'g'},
         {"debug", no_argument, 0, 'h'},
         {0, 0, 0, 0}};
-
+    if (ac == 1)
+        return (84);
     if (set_up_key(key, ac, av) == 1)
         return (0);
     while ((opt = getopt_long(ac, av, flag, long_options, NULL)) != -1)
-        test_key(key, opt);
+        test_key_one(key, opt);
     if (!fd)
         return (84);
     reading_folder(fd, &store);

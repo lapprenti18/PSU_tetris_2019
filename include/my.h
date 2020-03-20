@@ -145,5 +145,10 @@ void my_print_upcase_s(va_list ap);
 void my_printf(char *format, ...);
 void display_key(keyt_t *key);
 char *str_copy(char *enter);
+int check_order(char **tab, int save, int winner);
+void test_key_four(keyt_t *key, char opt);
+void test_key_tree(keyt_t *key, char opt);
+void test_key_two(keyt_t *key, char opt);
+void test_key_one(keyt_t *key, char opt);
 
 #endif /* MY_H_ */
