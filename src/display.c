@@ -8,9 +8,9 @@
 #include "../include/my.h"
 #include "../include/garbage_collector.h"
 
-int display_usage(void)
+int display_usage(char *name)
 {
-    char *str = "Usage: ./tetris [options]\n\
+    char *str = "[options]\n\
 Options:\n\
 --help Display this help\n\
 -L --level={num} Start Tetris at level num (def: 1)\n\
@@ -24,7 +24,7 @@ Options:\n\
 -w --without-next Hide next tetrimino (def: false)\n\
 -D --debug Debug mode (def: false)\n";
 
-    my_printf("%s", str);
+    my_printf("Usage: %s %s",name, str);
     return (1);
 }
 
@@ -47,7 +47,7 @@ void display_key(keyt_t *key)
 int set_up_key(keyt_t *key, int ac, char *av[])
 {
     if (ac == 2 && !my_strcmp(av[1], "--help"))
-        return (display_usage());
+        return (display_usage(av[1]));
     key->key_left = str_copy("ˆEOC");
     key->key_right = str_copy("ˆEOD");
     key->key_turn = str_copy("ˆEOA");
