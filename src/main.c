@@ -83,7 +83,7 @@ int main(int ac, char *av[])
     if (set_up_key(key, ac, av) == 1)
         return (0);
     while ((opt = getopt_long(ac, av, flag, long_options, NULL)) != -1)
-        test_key_one(key, opt);
+        test_key_one(key, opt, av[0]);
     if (!fd)
         return (84);
     reading_folder(fd, &store);

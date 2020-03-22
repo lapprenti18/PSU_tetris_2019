@@ -8,7 +8,7 @@
 #include "../include/my.h"
 #include "../include/garbage_collector.h"
 
-void test_key_four(keyt_t *key, char opt)
+void test_key_four(keyt_t *key, char opt, char *name)
 {
     switch (opt)
     {
@@ -25,12 +25,13 @@ void test_key_four(keyt_t *key, char opt)
             key->lvl = my_getnbr(optarg);
             break;
         } default : {
+            display_usage(name)
             exit (84);
         }
     }
 }
 
-void test_key_tree(keyt_t *key, char opt)
+void test_key_tree(keyt_t *key, char opt, char *name)
 {
     switch (opt)
     {
@@ -50,11 +51,11 @@ void test_key_tree(keyt_t *key, char opt)
                 my_strlen(optarg) == 1 ? key->key_left = optarg : 0;
                 break;
         } default :
-            test_key_four(key, opt);
+            test_key_four(key, opt, name);
     }
 }
 
-void test_key_two(keyt_t *key, char opt)
+void test_key_two(keyt_t *key, char opt, char *name)
 {
     switch (opt)
     {
@@ -77,11 +78,11 @@ void test_key_two(keyt_t *key, char opt)
             my_strlen(optarg) == 1 ? key->key_left = optarg : 0;
             break;
         } default :
-            test_key_tree(key, opt);
+            test_key_tree(key, opt, name);
     }
 }
 
-void test_key_one(keyt_t *key, char opt)    
+void test_key_one(keyt_t *key, char opt, char *name)
 {
     switch (opt)
     {
@@ -101,6 +102,6 @@ void test_key_one(keyt_t *key, char opt)
             my_strlen(optarg) == 1 ? key->key_drop = optarg : 0;
             break;
         } default :
-            test_key_two(key, opt);
+            test_key_two(key, opt, name);
     }
 }
