@@ -47,7 +47,7 @@ void display_key(keyt_t *key)
 int set_up_key(keyt_t *key, int ac, char *av[])
 {
     if (ac == 2 && !my_strcmp(av[1], "--help"))
-        return (display_usage(av[1]));
+        return (display_usage(av[0]));
     key->key_left = str_copy("ˆEOC");
     key->key_right = str_copy("ˆEOD");
     key->key_turn = str_copy("ˆEOA");
