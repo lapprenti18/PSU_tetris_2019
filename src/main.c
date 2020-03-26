@@ -67,8 +67,7 @@ int main(int ac, char *av[])
     if (set_up_key(key, ac, av) == 1)
         return (0);
     if (ac == 1) {
-        my_printf("Press enter to start\n");
-        loop_game(key);
+        display_usage(av[0]);
         return (0);
     }
     options(ac, av, key);

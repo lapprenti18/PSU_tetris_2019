@@ -71,7 +71,7 @@ COMP	=	src/main.c	\
 			src/create_windows.c	\
 			src/test_key.c
 
-CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses -g3
+CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses
 
 OBJ		=	$(SRC:.c=.o)
 
