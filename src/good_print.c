@@ -71,7 +71,6 @@ void final_print(char **tab, char **first_line, int check_same)
                 return;
             }
         }
-        //my_printf("%s %d %d\n", tab[index], my_special_len(tab[index]), rows);
         if (my_special_len(tab[index]) == rows)
             check_same = 1;
         if (my_special_len(tab[index]) > rows)

@@ -11,7 +11,7 @@
 void good_print(char **tab)
 {
     int check_len = 0;
-    char **first_line = NULL; 
+    char **first_line = NULL;
 
     for (; tab[check_len]; check_len += 1);
     if (check_len <= 1) {

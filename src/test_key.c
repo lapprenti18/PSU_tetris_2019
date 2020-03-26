@@ -10,8 +10,7 @@
 
 void test_key_four(keyt_t *key, char opt, char *name)
 {
-    switch (opt)
-    {
+    switch (opt) {
         case ('f') : {
             my_strlen(optarg) == 1 ? key->key_pause = optarg : 0;
             break;
@@ -25,7 +24,8 @@ void test_key_four(keyt_t *key, char opt, char *name)
             key->lvl = my_getnbr(optarg);
             break;
         } default : {
-            display_usage(name)
+            my_printf("Bad Parameter\n");
+            display_usage(name);
             exit (84);
         }
     }
@@ -33,8 +33,7 @@ void test_key_four(keyt_t *key, char opt, char *name)
 
 void test_key_tree(keyt_t *key, char opt, char *name)
 {
-    switch (opt)
-    {
+    switch (opt) {
         case ('b') : {
             my_strlen(optarg) == 1 ? key->key_right = optarg : 0;
             break;
@@ -57,8 +56,7 @@ void test_key_tree(keyt_t *key, char opt, char *name)
 
 void test_key_two(keyt_t *key, char opt, char *name)
 {
-    switch (opt)
-    {
+    switch (opt) {
         case ('q') : {
             my_strlen(optarg) == 1 ? key->key_quit = optarg : 0;
             break;
@@ -74,9 +72,6 @@ void test_key_two(keyt_t *key, char opt, char *name)
         } case ('z') : {
             my_strlen(optarg) == 1 ? key->help = 1 : 0;
             break;
-        } case ('a') : {
-            my_strlen(optarg) == 1 ? key->key_left = optarg : 0;
-            break;
         } default :
             test_key_tree(key, opt, name);
     }
@@ -84,8 +79,7 @@ void test_key_two(keyt_t *key, char opt, char *name)
 
 void test_key_one(keyt_t *key, char opt, char *name)
 {
-    switch (opt)
-    {
+    switch (opt) {
         case ('L') : {
             key->lvl = my_getnbr(optarg);
             break;

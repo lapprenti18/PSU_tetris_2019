@@ -67,11 +67,13 @@ COMP	=	src/main.c	\
 			src/garbage/garbage_collector.c	\
 			src/display.c	\
 			src/good_print.c	\
+			src/loop_game.c	\
+			src/create_windows.c	\
 			src/test_key.c
 
-CFLAGS  =	-W -Wall -Wextra -Iinclude -g3
+CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses -g3
 
-OBJ	=	$(SRC:.c=.o)
+OBJ		=	$(SRC:.c=.o)
 
 all	:	$(NAME)
 
@@ -79,12 +81,9 @@ $(NAME)	: $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(COMP) $(CFLAGS)
 
 clean	:
-	rm -f *.gcno
-	rm -f *.gcda
 	rm -f *.o $(OBJ)
 
 fclean	: clean
-	rm -f a.out
 	rm -f $(NAME)
 
 re	: fclean all

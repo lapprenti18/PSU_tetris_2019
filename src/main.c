@@ -63,27 +63,15 @@ int main(int ac, char *av[])
     DIR *fd = opendir("tetriminos");
     store_t store;
     keyt_t *key = my_malloc(sizeof(keyt_t));
-    char *flag = "L:l:r:t:d:q:p:w:D";
-    int opt;
-    struct option long_options[] = {
-        {"help", no_argument, 0, 'z'},
-        {"level=", required_argument, 0, 'm'},
-        {"map-size", required_argument, 0, 'x'},
-        {"key-left=", required_argument, 0, 'a'},
-        {"key-right=", required_argument, 0, 'b'},
-        {"key-turn=", required_argument, 0, 'c'},
-        {"key-drop=", required_argument, 0, 'k'},
-        {"key-quit=", required_argument, 0, 'e'},
-        {"key-pause=", required_argument, 0, 'f'},
-        {"without-next", no_argument, 0, 'g'},
-        {"debug", no_argument, 0, 'h'},
-        {0, 0, 0, 0}};
-    if (ac == 1)
-        return (84);
+
     if (set_up_key(key, ac, av) == 1)
         return (0);
-    while ((opt = getopt_long(ac, av, flag, long_options, NULL)) != -1)
-        test_key_one(key, opt, av[0]);
+    if (ac == 1) {
+        my_printf("Press enter to start\n");
+        loop_game(key);
+        return (0);
+    }
+    options(ac, av, key);
     if (!fd)
         return (84);
     reading_folder(fd, &store);
@@ -91,5 +79,6 @@ int main(int ac, char *av[])
         return (84);
     key->debug == true ? display_key(key) : 0;
     key->debug == true ? display_blocks(&store) : 0;
+    loop_game(key);
     return (0);
 }

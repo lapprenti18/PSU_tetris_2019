@@ -26,6 +26,7 @@
 #include <string.h>
 #include <sys/sysmacros.h>
 #include <signal.h>
+#include <ncurses.h>
 
 typedef struct format_t
 {
@@ -54,6 +55,35 @@ typedef struct keyt_s
     char *size;
 }keyt_t;
 
+typedef enum
+{
+    MENU,
+    BOARD,
+    NEXT,
+    INFOS,
+    TOTAL
+} WIN;
+
+typedef struct window_s
+{
+    WIN index;
+    WINDOW *window;
+    int height;
+    int width;
+    int position_x;
+    int position_y;
+    void (*display)(WINDOW *, int);
+} window_t;
+
+typedef struct storage_s
+{
+    window_t **windows;
+}storage_t;
+
+void create_windows(storage_t *store);
+void loop_game(keyt_t *key);
+void options(int ac, char **av, keyt_t *key);
+int check_order(char **tab, int save, int winner);
 int set_up_key(keyt_t *key, int ac, char *av[]);
 int ascii_order(store_t *store);
 void final_print(char **tab, char **first_line, int check_same);
