@@ -7,12 +7,21 @@
 
 #include "../include/my.h"
 
-void update_print(WINDOW *window, int index)
+void update_print(WINDOW *window, int index, gaming_t *gaming, char **tab)
 {
-    if (index == BOARD)
+    if (index == BOARD) {
         mvwprintw(window, 1, 1, "TETRIS GAME!");
-    if (index == NEXT)
+        for (gaming_t *copy = gaming; copy; copy = copy->next)
+            for (int i = 0; copy->tab[i]; i += 1)
+                mvwprintw(window, copy->pos_y + i, \
+                copy->pos_x, copy->tab[i]);
+    }
+    if (index == NEXT) {
         mvwprintw(window, 0, 2, "next");
+        for (int index = 0; tab[index]; index += 1) {
+            mvwprintw(window, index + 1, 7, tab[index]);
+        }
+    }
     if (index == INFOS) {
         mvwprintw(window, 2, 1, "High Score\t\t%d", 100);
         mvwprintw(window, 3, 1, "Score\t\t\t%d", 50);
@@ -52,7 +61,8 @@ void create_windows(storage_t *store)
     store->windows = malloc(sizeof(window_t *) * (TOTAL + 1));
     store->windows[MENU] = create_window(0, 0, 0, 0);
     store->windows[BOARD] = create_window(LINES - 2, 50, 1, COLS / 2 - 25);
-    store->windows[NEXT] = create_window(5, 15, 1, COLS / 2 + 26);
+    store->windows[NEXT] = create_window(8, 20, 1, COLS / 2 + 26);
     store->windows[INFOS] = create_window(10, 30, 20, 50);
     store->windows[TOTAL] = NULL;
+    store->tab = NULL;
 }

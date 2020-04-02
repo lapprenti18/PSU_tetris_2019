@@ -8,7 +8,7 @@
 #include "../include/my.h"
 #include "../include/garbage_collector.h"
 
-void good_print(char **tab)
+void good_print(char **tab, store_t *store)
 {
     int check_len = 0;
     char **first_line = NULL;
@@ -29,10 +29,10 @@ void good_print(char **tab)
         my_printf("Error\n");
         return;
     }
-    final_print(tab, first_line, 0);
+    final_print(tab, first_line, 0, store);
 }
 
-int read_and_print(char *str)
+int read_and_print(char *str, store_t *store)
 {
     char *buffer = NULL;
     struct stat st;
@@ -51,7 +51,7 @@ int read_and_print(char *str)
         return (84);
     }
     tab = my_str_to_word_array(buffer, "\n");
-    good_print(tab);
+    good_print(tab, store);
     return (0);
 }
 
@@ -89,5 +89,6 @@ void reading_folder(DIR *fd, store_t *store)
     }
     store->nb_tetriminos = nb_tetris;
     store->tetriminos = my_str_to_word_array(files, "\n");
+    store->forms = NULL;
     closedir(fd);
 }

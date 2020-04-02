@@ -8,6 +8,22 @@
 #include "../include/my.h"
 #include "../include/garbage_collector.h"
 
+void add_form(forms_t **forms, char **tab)
+{
+    forms_t *new = my_malloc(sizeof(forms_t));
+    forms_t *copy = *forms;
+
+    new->form = tab;
+    new->next = NULL;
+    if (!copy) {
+        *forms = new;
+        return;
+    }
+    while (copy->next)
+        copy = copy->next;
+    copy->next = new;
+}
+
 int ascii_order(store_t *store)
 {
     int winner = 0;
@@ -39,7 +55,7 @@ int my_special_len(char *str)
     return (len);
 }
 
-void check_last_error(char **tab, char **first_line)
+void check_last_error(char **tab, char **first_line, store_t *store)
 {
     int len_tab = 0;
     int color = my_getnbr(first_line[2]);
@@ -55,11 +71,12 @@ void check_last_error(char **tab, char **first_line)
     }
     my_printf("Size %s*%s : Color %s :\n", first_line[0], \
     first_line[1], first_line[2]);
+    add_form(&store->forms, &tab[1]);
     for (int index = 1; tab[index]; index += 1)
         my_printf("%s\n", tab[index]);
 }
 
-void final_print(char **tab, char **first_line, int check_same)
+void final_print(char **tab, char **first_line, int check_same, store_t *store)
 {
     int rows = my_getnbr(first_line[0]);
     int check_size = 0;
@@ -80,5 +97,5 @@ void final_print(char **tab, char **first_line, int check_same)
         my_printf("Error\n");
         return;
     }
-    check_last_error(tab, first_line);
+    check_last_error(tab, first_line, store);
 }

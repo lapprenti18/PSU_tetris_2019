@@ -43,7 +43,7 @@ void update_tab_and_display(store_t *store)
         my_printf("%c", store->tetriminos[winner][index]);
     }
     my_printf(" : ");
-    read_and_print(store->tetriminos[winner]);
+    read_and_print(store->tetriminos[winner], store);
     store->tetriminos[winner][0] = '~';
 }
 
@@ -61,8 +61,8 @@ char *str_copy(char *enter)
 int main(int ac, char *av[])
 {
     DIR *fd = opendir("tetriminos");
-    store_t store;
     keyt_t *key = my_malloc(sizeof(keyt_t));
+    store_t store;
 
     if (set_up_key(key, ac, av) == 1)
         return (0);
@@ -78,6 +78,6 @@ int main(int ac, char *av[])
         return (84);
     key->debug == true ? display_key(key) : 0;
     key->debug == true ? display_blocks(&store) : 0;
-    loop_game(key);
+    loop_game(key, &store);
     return (0);
 }

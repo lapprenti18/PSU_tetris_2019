@@ -34,10 +34,27 @@ typedef struct format_t
     void (*ptr)(va_list);
 } format_t;
 
+typedef struct forms_s
+{
+    char **form;
+    struct forms_s *next;
+} forms_t;
+
+typedef struct gaming_s
+{
+    int pos_x;
+    int pos_y;
+    char **tab;
+    int length;
+    bool is_blocked;
+    struct gaming_s *next;
+} gaming_t;
+
 typedef struct store_s
 {
     char **tetriminos;
     int nb_tetriminos;
+    forms_t *forms;
 }store_t;
 
 typedef struct keyt_s
@@ -72,22 +89,29 @@ typedef struct window_s
     int width;
     int position_x;
     int position_y;
-    void (*display)(WINDOW *, int);
+    void (*display)(WINDOW *, int, gaming_t *, char **);
 } window_t;
 
 typedef struct storage_s
 {
     window_t **windows;
+    char **tab;
 }storage_t;
 
+char **get_next_tab(int rng, store_t *store);
+int check_for_collision(gaming_t *gaming);
+int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage);
+void add_random_form(gaming_t **gaming, store_t *store, int rng);
+void add_to_gaming(gaming_t **gaming, int pos[2], int length, char **tab);
 void create_windows(storage_t *store);
-void loop_game(keyt_t *key);
+void loop_game(keyt_t *key, store_t *store);
 void options(int ac, char **av, keyt_t *key);
 int check_order(char **tab, int save, int winner);
 int set_up_key(keyt_t *key, int ac, char *av[]);
 int ascii_order(store_t *store);
-void final_print(char **tab, char **first_line, int check_same);
-int read_and_print(char *str);
+void final_print(char **tab, char **first_line, \
+int check_same, store_t *store);
+int read_and_print(char *str, store_t *store);
 void update_tab_and_display(store_t *store);
 void display_blocks(store_t *store);
 int check_finish(char **map);

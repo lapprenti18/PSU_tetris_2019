@@ -69,9 +69,11 @@ COMP	=	src/main.c	\
 			src/good_print.c	\
 			src/loop_game.c	\
 			src/create_windows.c	\
+			src/gaming.c	\
+			src/analyse_input.c	\
 			src/test_key.c
 
-CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses
+CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses -g3
 
 OBJ		=	$(SRC:.c=.o)
 
