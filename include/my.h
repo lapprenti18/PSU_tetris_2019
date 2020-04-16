@@ -102,6 +102,7 @@ typedef struct storage_s
     int lines;
     int level;
     int timer;
+    int bonus;
 }storage_t;
 
 void update_times(storage_t *storage, store_t *store, gaming_t *gaming);

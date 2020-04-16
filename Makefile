@@ -71,7 +71,8 @@ COMP	=	src/main.c	\
 			src/create_windows.c	\
 			src/gaming.c	\
 			src/analyse_input.c	\
-			src/test_key.c
+			src/test_key.c	\
+			src/time.c
 
 CFLAGS  =	-W -Wall -Wextra -Iinclude -lncurses -g3
 

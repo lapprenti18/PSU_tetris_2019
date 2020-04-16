@@ -29,7 +29,7 @@ gaming_t *gaming, storage_t *store)
         mvwprintw(window, 2, 1, "High Score\t\t%d", store->hg);
         mvwprintw(window, 3, 1, "Score\t\t\t%d", store->score);
         mvwprintw(window, 5, 1, "Lines\t\t\t%d", store->lines);
-        mvwprintw(window, 6, 1, "Level\t\t\t%d", store->lines);
+        mvwprintw(window, 6, 1, "Level\t\t\t%d", store->level);
         mvwprintw(window, 8, 1, "Timer\t\t\t%d", store->timer);
     }
 }
@@ -76,4 +76,10 @@ void create_windows(storage_t *store)
         my_memset(store->map[i], ' ', 50);
         store->map[i][50] = 0;
     }
+    store->hg = 0;
+    store->score = 0;
+    store->timer = 0;
+    store->level = 0;
+    store->lines = 0;
+    store->bonus = 0;
 }
