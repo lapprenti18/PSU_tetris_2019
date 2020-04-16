@@ -16,8 +16,8 @@ gaming_t *gaming, storage_t *store)
             mvwprintw(window, i + 1, \
             1, store->map[i]);
         for (int i = 0; gaming->tab[i]; i += 1)
-            mvwprintw(window, gaming->pos_y + i, \
-            gaming->pos_x, gaming->tab[i]);
+            mvwprintw(window, gaming->pos_y + i + 1, \
+            gaming->pos_x + 1, gaming->tab[i]);
     }
     if (index == NEXT) {
         mvwprintw(window, 0, 2, "next");
