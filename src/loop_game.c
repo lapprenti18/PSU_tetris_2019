@@ -30,7 +30,7 @@ store_t *store, gaming_t *gaming)
 
     storage->tab = get_next_tab(rng, store);
     do {
-        //update_times(storage, store, gaming);
+        update_times(storage, store, gaming);
         for (int index = 1; storage->windows[index]; index += 1) {
             werase(storage->windows[index]->window);
             box(storage->windows[index]->window, 0, 0);
@@ -46,6 +46,7 @@ store_t *store, gaming_t *gaming)
             add_random_form(&gaming, store, rng);
             rng = rand() % (store->nb_tetriminos - 1);
             storage->tab = get_next_tab(rng, store);
+            storage->bonus += 10;
         }
     } while (analyse_input(b, gaming, store, storage));
 }

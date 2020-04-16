@@ -25,6 +25,8 @@ void modif_map(storage_t *store, gaming_t *gaming)
         if (full_line(store->map[i])) {
             my_memset(store->map[i], ' ', 50);
             update_map(store, i);
+            store->bonus += 50;
+            store->lines += 1;  
         }
     }
 }
