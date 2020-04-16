@@ -97,6 +97,11 @@ typedef struct storage_s
     window_t **windows;
     char **tab;
     char **map;
+    int hg;
+    int score;
+    int lines;
+    int level;
+    int timer;
 }storage_t;
 
 void modif_map(storage_t *store, gaming_t *gaming);

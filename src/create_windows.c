@@ -26,11 +26,11 @@ gaming_t *gaming, storage_t *store)
         }
     }
     if (index == INFOS) {
-        mvwprintw(window, 2, 1, "High Score\t\t%d", 100);
-        mvwprintw(window, 3, 1, "Score\t\t\t%d", 50);
-        mvwprintw(window, 5, 1, "Lines\t\t\t%d", 10);
-        mvwprintw(window, 6, 1, "Level\t\t\t%d", 1);
-        mvwprintw(window, 8, 1, "Timer\t\t\t%d", 30);
+        mvwprintw(window, 2, 1, "High Score\t\t%d", store->hg);
+        mvwprintw(window, 3, 1, "Score\t\t\t%d", store->score);
+        mvwprintw(window, 5, 1, "Lines\t\t\t%d", store->lines);
+        mvwprintw(window, 6, 1, "Level\t\t\t%d", store->lines);
+        mvwprintw(window, 8, 1, "Timer\t\t\t%d", store->timer);
     }
 }
 
