@@ -37,13 +37,11 @@ int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage)
     b = wgetch(storage->windows[BOARD]->window);
     if (b == 27)
         return (0);
-    if (b == KEY_LEFT && gaming->pos_x > 1)
+    if (b == KEY_LEFT && gaming->pos_x > 1 && !gaming->is_blocked)
         gaming->pos_x -= 1;
-    if (b == KEY_RIGHT && gaming->pos_x < 47)
+    if (b == KEY_RIGHT && gaming->pos_x < 47 && !gaming->is_blocked)
         gaming->pos_x += 1;
-    if (b == KEY_DOWN && gaming->pos_y < 52)
-        gaming->pos_y += 1;
-    if (b == 'd')
+    if (b == 'd' && !gaming->is_blocked)
         rotate_right(gaming, NULL, 0, 0);
     return (1);
 }

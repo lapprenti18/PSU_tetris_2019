@@ -46,6 +46,7 @@ typedef struct gaming_s
     int pos_y;
     char **tab;
     int length;
+    int height;
     bool is_blocked;
     struct gaming_s *next;
 } gaming_t;
@@ -89,15 +90,18 @@ typedef struct window_s
     int width;
     int position_x;
     int position_y;
-    void (*display)(WINDOW *, int, gaming_t *, char **);
 } window_t;
 
 typedef struct storage_s
 {
     window_t **windows;
     char **tab;
+    char **map;
 }storage_t;
 
+void modif_map(storage_t *store, gaming_t *gaming);
+void update_print(WINDOW *window, int index, \
+gaming_t *gaming, storage_t *store);
 char **get_next_tab(int rng, store_t *store);
 int check_for_collision(gaming_t *gaming);
 int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage);

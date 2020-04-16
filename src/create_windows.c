@@ -7,19 +7,22 @@
 
 #include "../include/my.h"
 
-void update_print(WINDOW *window, int index, gaming_t *gaming, char **tab)
+void update_print(WINDOW *window, int index, \
+gaming_t *gaming, storage_t *store)
 {
     if (index == BOARD) {
         mvwprintw(window, 1, 1, "TETRIS GAME!");
-        for (gaming_t *copy = gaming; copy; copy = copy->next)
-            for (int i = 0; copy->tab[i]; i += 1)
-                mvwprintw(window, copy->pos_y + i, \
-                copy->pos_x, copy->tab[i]);
+        for (int i = 0; store->map[i]; i += 1)
+            mvwprintw(window, i + 1, \
+            1, store->map[i]);
+        for (int i = 0; gaming->tab[i]; i += 1)
+            mvwprintw(window, gaming->pos_y + i, \
+            gaming->pos_x, gaming->tab[i]);
     }
     if (index == NEXT) {
         mvwprintw(window, 0, 2, "next");
-        for (int index = 0; tab[index]; index += 1) {
-            mvwprintw(window, index + 1, 7, tab[index]);
+        for (int index = 0; store->tab[index]; index += 1) {
+            mvwprintw(window, index + 1, 7, store->tab[index]);
         }
     }
     if (index == INFOS) {
@@ -51,18 +54,26 @@ int position_y, int position_x)
     window->position_x = position_x;
     window->position_y = position_y;
     window->index = check;
-    window->display = update_print;
     check += 1;
     return (window);
 }
 
 void create_windows(storage_t *store)
 {
+    int height = LINES - 10;
+
     store->windows = malloc(sizeof(window_t *) * (TOTAL + 1));
     store->windows[MENU] = create_window(0, 0, 0, 0);
-    store->windows[BOARD] = create_window(LINES - 2, 50, 1, COLS / 2 - 25);
+    store->windows[BOARD] = create_window(height + 2, 52, 0, COLS / 2 - 28);
     store->windows[NEXT] = create_window(8, 20, 1, COLS / 2 + 26);
     store->windows[INFOS] = create_window(10, 30, 20, 50);
     store->windows[TOTAL] = NULL;
     store->tab = NULL;
+    store->map = malloc(sizeof(char *) * (height + 1));
+    store->map[height] = NULL;
+    for (int i = 0; i < height; i += 1) {
+        store->map[i] = malloc(sizeof(char) * 51);
+        my_memset(store->map[i], ' ', 50);
+        store->map[i][50] = 0;
+    }
 }

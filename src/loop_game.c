@@ -9,8 +9,16 @@
 
 void destroy_structures(storage_t *store)
 {
-    for (int i = 0; store->windows[i]; i += 1)
+    int i = 0;
+
+    for (i = 0; store->windows[i]; i += 1)
         free (store->windows[i]);
+    for (i = 0; store->map[i]; i += 1)
+        free (store->map[i]);
+    for (i = 0; store->tab[i]; i += 1)
+        free (store->tab[i]);
+    free (store->tab);
+    free (store->map);
     free (store->windows);
 }
 
@@ -18,23 +26,24 @@ void display_game(storage_t *storage, keyt_t *key, \
 store_t *store, gaming_t *gaming)
 {
     int b = 0;
-    int rng = rand() % store->nb_tetriminos;
+    int rng = rand() % (store->nb_tetriminos - 1);
 
     storage->tab = get_next_tab(rng, store);
     do {
         for (int index = 1; storage->windows[index]; index += 1) {
-            wclear(storage->windows[index]->window);
+            werase(storage->windows[index]->window);
             box(storage->windows[index]->window, 0, 0);
-            storage->windows[index]->display(storage->windows[index]->window, \
-            index, gaming, storage->tab);
+            update_print(storage->windows[index]->window, \
+            index, gaming, storage);
             wrefresh(storage->windows[index]->window);
         }
         if (!check_for_collision(gaming))
             gaming->pos_y += 1;
         else {
             gaming->is_blocked = true;
+            modif_map(storage, gaming);
             add_random_form(&gaming, store, rng);
-            rng = rand() % store->nb_tetriminos;
+            rng = rand() % (store->nb_tetriminos - 1);
             storage->tab = get_next_tab(rng, store);
         }
     } while (analyse_input(b, gaming, store, storage));
@@ -70,11 +79,11 @@ void loop_game(keyt_t *key, store_t *store)
     storage_t storage;
     gaming_t *gaming = NULL;
     int state = 0;
-    int rng = rand() % store->nb_tetriminos;
+    int rng = rand() % (store->nb_tetriminos - 1);
 
     cbreak();
     srand(time(NULL));
-    while (read(0, buffer, 1) == 0);
+    getch();
     initscr();
     keypad(stdscr, true);
     create_windows(&storage);
