@@ -33,8 +33,6 @@ void rotate_right(gaming_t *gaming, char **tab, int index, int max_len)
 
 int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage)
 {
-    int b = 0;
-
     wtimeout(storage->windows[BOARD]->window, 500);
     b = wgetch(storage->windows[BOARD]->window);
     if (b == 27)
