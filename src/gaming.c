@@ -37,19 +37,15 @@ char **get_next_tab(int rng, store_t *store)
     return (copy->form);
 }
 
-int check_for_collision(gaming_t *gaming)
+int check_for_collision(gaming_t *gaming, storage_t *store)
 {
     int last_line = gaming->pos_y + gaming->length;
-    int pos_x = gaming->pos_x;
-    int pos_y = gaming->pos_y;
+    int pos_x = gaming->pos_x + 1;
+    int pos_y = gaming->pos_y + 1;
     int length = gaming->length;
 
     if (last_line >= LINES - 11)
         return (1);
-    for (gaming_t *copy = gaming->next; copy; copy = copy->next) {
-        if (last_line == copy->pos_y && pos_x == copy->pos_x)
-            return (1);
-    }
     return (0);
 }
 

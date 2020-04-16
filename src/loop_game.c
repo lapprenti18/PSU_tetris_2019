@@ -30,6 +30,7 @@ store_t *store, gaming_t *gaming)
 
     storage->tab = get_next_tab(rng, store);
     do {
+        update_times(storage, store, gaming);
         for (int index = 1; storage->windows[index]; index += 1) {
             werase(storage->windows[index]->window);
             box(storage->windows[index]->window, 0, 0);
@@ -37,7 +38,7 @@ store_t *store, gaming_t *gaming)
             index, gaming, storage);
             wrefresh(storage->windows[index]->window);
         }
-        if (!check_for_collision(gaming))
+        if (!check_for_collision(gaming, storage))
             gaming->pos_y += 1;
         else {
             gaming->is_blocked = true;

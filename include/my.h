@@ -104,11 +104,12 @@ typedef struct storage_s
     int timer;
 }storage_t;
 
+void update_times(storage_t *storage, store_t *store, gaming_t *gaming);
 void modif_map(storage_t *store, gaming_t *gaming);
 void update_print(WINDOW *window, int index, \
 gaming_t *gaming, storage_t *store);
 char **get_next_tab(int rng, store_t *store);
-int check_for_collision(gaming_t *gaming);
+int check_for_collision(gaming_t *gaming, storage_t *storage);
 int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage);
 void add_random_form(gaming_t **gaming, store_t *store, int rng);
 void add_to_gaming(gaming_t **gaming, int pos[2], int length, char **tab);
