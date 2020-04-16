@@ -105,6 +105,8 @@ typedef struct storage_s
     int bonus;
 }storage_t;
 
+void update_map(storage_t *storage, int i);
+int full_line(char *str);
 void update_times(storage_t *storage, store_t *store, gaming_t *gaming);
 void modif_map(storage_t *store, gaming_t *gaming);
 void update_print(WINDOW *window, int index, \

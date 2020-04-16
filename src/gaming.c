@@ -12,13 +12,20 @@ void modif_map(storage_t *store, gaming_t *gaming)
     int check = 0;
     int temp_x = 0;
 
-    for (int y = gaming->pos_y; check < gaming->length; y += 1) {
+    for (int y = gaming->pos_y; gaming->tab[check]; y += 1) {
         temp_x = 0;
         for (int x = gaming->pos_x; gaming->tab[check][temp_x]; x += 1) {
-            store->map[y][x] = gaming->tab[check][temp_x];
+            store->map[y][x] = (store->map[y][x] == '*') \
+            ? '*': gaming->tab[check][temp_x];
             temp_x += 1;
         }
         check += 1;
+    }
+    for (int i = 0; store->map[i]; i += 1) {
+        if (full_line(store->map[i])) {
+            my_memset(store->map[i], ' ', 50);
+            update_map(store, i);
+        }
     }
 }
 
@@ -40,12 +47,20 @@ char **get_next_tab(int rng, store_t *store)
 int check_for_collision(gaming_t *gaming, storage_t *store)
 {
     int last_line = gaming->pos_y + gaming->length;
-    int pos_x = gaming->pos_x + 1;
-    int pos_y = gaming->pos_y + 1;
+    int pos_x = gaming->pos_x;
+    int pos_y = gaming->pos_y;
     int length = gaming->length;
+    int y = last_line - 1;
 
     if (last_line >= LINES - 11)
         return (1);
+    for (int y = 0; gaming->tab[y]; y += 1) {
+        for (int x = 0; gaming->tab[y][x]; x += 1) {
+            if (gaming->tab[y][x] == '*' \
+            && store->map[last_line][pos_x + x] == '*')
+                return (1);
+        }
+    }
     return (0);
 }
 
