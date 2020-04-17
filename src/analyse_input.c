@@ -48,8 +48,6 @@ void rotate_right(gaming_t *gaming, char **tab, int index, int max_len)
         tab[i][current_len] = 0;
         i += 1;
     }
-    for (int i = 0; gaming->tab[i]; i += 1)
-        free (gaming->tab[i]);
     for (current_len = 0; tab[current_len]; current_len += 1);
     gaming->tab = tab;
     gaming->length = current_len;
@@ -68,7 +66,7 @@ int analyse_input(int b, gaming_t *gaming, store_t *store, storage_t *storage)
         gaming->pos_x -= 1;
     if (b == KEY_RIGHT && gaming->pos_x < 47 && !gaming->is_blocked)
         gaming->pos_x += 1;
-    if (b == 'd' && !gaming->is_blocked)
+    if (b == 'd' && !gaming->is_blocked && gaming->pos_x > 5 && gaming->pos_x < 45)
         rotate_right(gaming, NULL, 0, 0);
     return (1);
 }
